@@ -1,9 +1,16 @@
 console.log('JS');
 $(onReady)
+
+let operator = ``,
+
 function onReady () {
     console.log('JQ');
     
     $(`#equals`).on(`click`, sendCalc);
+    $(`#add`).on(`click`, assignOpAdd);
+    $(`#subtract`).on(`click`, assignOpSubtract);
+    $(`#multiply`).on(`click`, assignOpMultiply);
+    $(`#assignOpDivide`).on(`click`, assignOpDivide);
 };
 
 function sendCalc() {
@@ -13,6 +20,7 @@ function sendCalc() {
         data: {
             firstNumber: $(`#firstInput`).val(),
             secondNumber: $(`#secondInput`).val(),
+            operator: operator,
         }
     }).then(function (response) {
         // render function called here
@@ -20,3 +28,16 @@ function sendCalc() {
         $(`#secondInput`).val(``);
     });
 };
+
+function assignOpAdd () {
+    operator = `+`;
+}
+function assignOpSubtract() {
+    operator = `-`;
+}
+function assignOpMultiply() {
+    operator = `*`;
+}
+function assignOpDivide() {
+    operator = `/`;
+}
