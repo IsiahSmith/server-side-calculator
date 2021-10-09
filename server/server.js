@@ -8,8 +8,30 @@ app.listen(PORT, () => {
     console.log('Server is running on port', PORT);
 });
 
+let calcHistory = [];
+
 app.post("/calculate", (req, res) => {
-    console.log(req.body);
-    // calculating function called here
+    console.log(`from POST on server`);
+    calculator(req.body);
     res.sendStatus(201);
+});
+
+function calculator (data) {
+        if (data.op === `+`) {
+            data.answer = Number(data.firstNumber) + Number(data.secondNumber);
+        } else if (data.op === `-`) {
+            data.answer = data.firstNumber - data.secondNumber;
+        } else if (data.op === `*`) {
+            data.answer = data.firstNumber * data.secondNumber;
+        } else if (data.op === `/`) {
+            data.answer = data.firstNumber / data.secondNumber;
+        }
+        calcHistory.push(data);
+        console.log(calcHistory);
+        console.log('answer is', data.answer);
+};
+
+app.get("/calculate", (req, res) => {
+    console.log('From GET on server');
+    res.send(calcHistory)
 });

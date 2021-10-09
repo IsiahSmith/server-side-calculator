@@ -1,17 +1,34 @@
 console.log('JS');
 $(onReady)
 
-let operator = ``,
+let operator = ``;
 
-function onReady () {
+function onReady() {
     console.log('JQ');
-    
+
     $(`#equals`).on(`click`, sendCalc);
     $(`#add`).on(`click`, assignOpAdd);
     $(`#subtract`).on(`click`, assignOpSubtract);
     $(`#multiply`).on(`click`, assignOpMultiply);
-    $(`#assignOpDivide`).on(`click`, assignOpDivide);
+    $(`#divide`).on(`click`, assignOpDivide);
 };
+
+function assignOpAdd() {
+    operator = `+`;
+    console.log('operator is:',operator);
+}
+function assignOpSubtract() {
+    operator = `-`;
+    console.log('operator is:',operator);
+}
+function assignOpMultiply() {
+    operator = `*`;
+    console.log('operator is:',operator);
+}
+function assignOpDivide() {
+    operator = `/`;
+    console.log('operator is:',operator);
+}
 
 function sendCalc() {
     $.ajax({
@@ -20,24 +37,26 @@ function sendCalc() {
         data: {
             firstNumber: $(`#firstInput`).val(),
             secondNumber: $(`#secondInput`).val(),
-            operator: operator,
+            op: operator,
         }
     }).then(function (response) {
-        // render function called here
+        renderAnswer();
         $(`#firstInput`).val(``);
         $(`#secondInput`).val(``);
     });
 };
 
-function assignOpAdd () {
-    operator = `+`;
+function renderAnswer() {
+    $.ajax({
+        method: "GET",
+        url: "/calculate",
+    }).then(function (response) {
+        console.log(response);
+        $(`#answerDrop`).empty();
+        for(let i=0; i<response.length; i++) {
+        $(`#answerDrop`).html(`<span>${response[i].answer}</span>`)
+        }
+    })
 }
-function assignOpSubtract() {
-    operator = `-`;
-}
-function assignOpMultiply() {
-    operator = `*`;
-}
-function assignOpDivide() {
-    operator = `/`;
-}
+
+
