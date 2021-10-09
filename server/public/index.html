@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vendors/jquery-3.6.0.js"></script>
+    <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Server Side Calculator</title>
+</head>
+<h1>Server Side Calculator</h1>
+
+<body>
+    <div id="userInteraction">
+        <input type="number" id="firstInput">
+        <button id="add">+</button>
+        <button id="subtract">-</button>
+        <button id="multiply">*</button>
+        <button id="divide">/</button>
+        <input type="number" id="secondInput">
+        <button id="equals">=</button>
+        <button id="clear">C</button>
+    </div>
+
+    <div id="answerDrop">
+        <!-- answer of the inputted calculation goes here -->
+    </div>
+
+    <div id="historyDrop">
+        <!-- all previous calculations go here -->
+    </div>
+</body>
+
+</html>
