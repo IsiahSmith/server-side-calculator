@@ -11,6 +11,7 @@ function onReady() {
     $(`#subtract`).on(`click`, assignOpSubtract);
     $(`#multiply`).on(`click`, assignOpMultiply);
     $(`#divide`).on(`click`, assignOpDivide);
+    $(`#clear`).on(`click`, clearInputs)
 };
 
 function assignOpAdd() {
@@ -28,6 +29,11 @@ function assignOpMultiply() {
 function assignOpDivide() {
     operator = `/`;
     console.log('operator is:',operator);
+}
+
+function clearInputs() {
+    $(`#firstInput`).val(``);
+    $(`#secondInput`).val(``);
 }
 
 function sendCalc() {
