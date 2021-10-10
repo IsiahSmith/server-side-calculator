@@ -62,6 +62,10 @@ function renderAnswer() {
         for(let i=0; i<response.length; i++) {
         $(`#answerDrop`).html(`<span>${response[i].answer}</span>`)
         }
+        $(`#historyDrop`).empty();
+        for(let j=0; j<response.length; j++) {
+            $(`#historyDrop`).append(`<li>${response[j].firstNumber} ${response[j].op} ${response[j].secondNumber} = ${response[j].answer}</li>`)
+        }
     })
 }
 
