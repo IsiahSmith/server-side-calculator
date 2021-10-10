@@ -1,11 +1,13 @@
 console.log('JS');
 $(onReady)
 
+// empty variable for the desired operator, will be reassigned
 let operator = ``;
 
 function onReady() {
     console.log('JQ');
 
+    // click listeners for every button on DOM
     $(`#equals`).on(`click`, sendCalc);
     $(`#add`).on(`click`, assignOpAdd);
     $(`#subtract`).on(`click`, assignOpSubtract);
@@ -14,6 +16,7 @@ function onReady() {
     $(`#clear`).on(`click`, clearInputs)
 };
 
+// group of functions that reassign the operator
 function assignOpAdd() {
     operator = `+`;
     console.log('operator is:',operator);
@@ -36,6 +39,7 @@ function clearInputs() {
     $(`#secondInput`).val(``);
 }
 
+// POST that sends object of the operator and both input fields to server
 function sendCalc() {
     $.ajax({
         method: "POST",
@@ -52,6 +56,7 @@ function sendCalc() {
     });
 };
 
+// GET that receives updated object and puts it on the DOM
 function renderAnswer() {
     $.ajax({
         method: "GET",
